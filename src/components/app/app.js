@@ -4,9 +4,10 @@ import Header from '../header';
 import RandomPlanet from '../random-planet';
 import ErrorIndicator from '../error-indicator';
 import PeoplePage from '../people-page';
-import ErrorButton from '../../error-button';
+import ErrorButton from '../error-button';
 
 import './app.css';
+
 export default class App extends Component {
 
   state = {
