@@ -29,7 +29,7 @@ export default class ItemDetails extends Component {
 
   componentDidMount() {
     this.updateItem();
-  }
+  };
 
   componentDidUpdate(prevProps) {
     if (this.props.itemId !== prevProps.itemId ||
@@ -37,7 +37,7 @@ export default class ItemDetails extends Component {
       this.props.getImageUrl !== prevProps.getImageUrl) {
       this.updateItem();
     }
-  }
+  };
 
   updateItem() {
     const { itemId, getData, getImageUrl } = this.props;
@@ -52,7 +52,7 @@ export default class ItemDetails extends Component {
           image: getImageUrl(item)
         });
       });
-  }
+  };
 
   render() {
 
@@ -77,7 +77,7 @@ export default class ItemDetails extends Component {
               React.Children.map(this.props.children, (child) => {
                 return React.cloneElement(child, { item });
               })
-            }
+            };
           </ul>
           <ErrorButton />
         </div>

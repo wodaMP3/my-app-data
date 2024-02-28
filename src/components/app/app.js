@@ -6,16 +6,32 @@ import ErrorBoundry from '../error-boundry';
 import SwapiService from '../../services/swapi-service';
 import DummySwapiService from '../../services/dummy-swapi-service';
 
-import { PeoplePage, PlanetsPage, StarshipsPage } from '../pages';
+import { 
+  HomePage,
+  PeoplePage,
+  PlanetsPage,
+  StarshipsPage,
+  LoginPage,
+  SecretPage } from '../pages';
 
 import { SwapiServiceProvider } from '../swapi-service-context';
 
 import './app.css';
 
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import StarshipDetails from '../sw-components/starship-details';
+
 export default class App extends Component {
 
   state = {
     swapiService: new SwapiService(),
+    isLoggedIn: false
+  };
+
+  onLogin = () => {
+    this.setState({
+      isLoggedIn: true
+    });
   };
 
   onServiceChange = () => {
@@ -32,21 +48,33 @@ export default class App extends Component {
 
   render() {
 
+    const { isLoggedIn } = this.state;
+
     return (
       <ErrorBoundry>
         <SwapiServiceProvider value={this.state.swapiService} >
+          <Router>
           <div className="stardb-app">
             <Header onServiceChange={this.onServiceChange}/>
-
               <RandomPlanet updateInterval={3500}/>
+             <Routes>
+              <Route exact path='/' Component={HomePage}/> 
 
-              <PeoplePage />
+              <Route path="/people" Component={PeoplePage} />
+              <Route path="/planets" Component={PlanetsPage} />
+              <Route path="/starships" exact Component={StarshipsPage} />
 
-              <PlanetsPage />
+              <Route path="/login" element={
+              <LoginPage isLoggedIn={isLoggedIn}
+                onLogin={this.onLogin}/>
+                }/>
 
-              <StarshipsPage />
-
-          </div>
+              <Route path="/secret" element={
+              <SecretPage isLoggedIn={isLoggedIn}/>}/>
+              
+             </Routes>
+            </div>
+          </Router>
         </SwapiServiceProvider>
       </ErrorBoundry>
     );

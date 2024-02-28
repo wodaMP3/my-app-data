@@ -53,7 +53,7 @@ export default class SwapiService {
     return `${this._imageBase}/characters/${id}.jpg`
   };
 
-  getStarshipImage = ({id}) => {
+  getStarshipImage = ({id}) => { 
     return `${this._imageBase}/starships/${id}.jpg`
   };
 

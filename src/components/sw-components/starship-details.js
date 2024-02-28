@@ -1,8 +1,10 @@
 import React from 'react';
 import ItemDetails, { Record } from '../item-details';
 import { withSwapiService } from '../hoc-helpers';
+import { useParams } from 'react-router-dom';
 
 const StarshipDetails = (props) => {
+  
   return (
     <ItemDetails {...props}>
       <Record field="model" label="Model" />
@@ -18,5 +20,6 @@ const mapMethodsToProps = (swapiService) => {
     getImageUrl: swapiService.getStarshipImage
   }
 };
+
 
 export default withSwapiService(StarshipDetails, mapMethodsToProps);

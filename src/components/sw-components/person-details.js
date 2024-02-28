@@ -8,7 +8,7 @@ const PersonDetails = (props) => {
       <Record field="gender" label="Gender" />
       <Record field="eyeColor" label="Eye Color" />
     </ItemDetails>
-  );
+  )
 };
 
 const mapMethodsToProps = (swapiService) => {
